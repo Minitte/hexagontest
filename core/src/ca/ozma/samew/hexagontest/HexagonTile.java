@@ -15,8 +15,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class HexagonTile {
 	
+	static boolean first = true;
+	
     // cord center
-    static float centerCordX = 11, centerCordY = 11;
+    static int centerCordX = 14, centerCordY = 14;
 	
     Sprite sprite;
     static Texture texture;
@@ -37,14 +39,19 @@ public class HexagonTile {
      */
     public HexagonTile(float x, float y) {
     	
-    	cordX = Math.round(x) - 11;
-    	cordY = Math.round(y) - 11;
+    	cordX = Math.round(x) - centerCordX;
+    	cordY = Math.round(y) - centerCordY;
     	
         if (texture == null) {
             texture = new Texture(Gdx.files.internal("hexagon-fill.png"));
         }
         
-        sprite = new Sprite(texture);
+        if (first) {
+        	sprite = new Sprite(new Texture(Gdx.files.internal("hexagon-fill-cent.png")));
+        	first = false;
+        } else {
+        	sprite = new Sprite(texture);
+        }
         font = new BitmapFont();
         font.getData().scale(2.5f);
         
@@ -62,6 +69,6 @@ public class HexagonTile {
      */
     public void render(Batch batch) {
         batch.draw(sprite, x, y);
-        font.draw(batch, "[" + (cordX + centerCordY) + ", " + (cordY + centerCordY)+ "]", x + edgeRadius - 90, y + faceRadius);
+        font.draw(batch, "[" + (cordX + centerCordX) + ", " + (cordY + centerCordX)+ "]", x + edgeRadius - 85, y + faceRadius);
     }
 }
