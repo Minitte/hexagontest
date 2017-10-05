@@ -2,12 +2,12 @@ package ca.ozma.samew.hexagontest;
 
 public enum HexagonDirection {
 	
-	N(0, -1), 
-	NE(1, -1), 
-	SE(1, 0),
-	S(0, 1),
-	SW(-1, 1),
-	NW(-1, 0),
+	N	(+0, +1), 
+	NE	(+1, +1), 
+	SE	(+1, +0),
+	S	(+0, -1),
+	SW	(-1, -1),
+	NW	(-1, +0),
 	UNKNOWN(-999,999);
 	
 	public int x, y;
