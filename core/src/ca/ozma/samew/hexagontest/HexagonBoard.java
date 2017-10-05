@@ -32,7 +32,7 @@ public class HexagonBoard {
         this.r = r;
         arrayCenterX = r + 1;
         arrayCenterY = r + 1;
-        tiles = new HexagonTile[r * 2 + 1][r * 2 + 1];
+        tiles = new HexagonTile[r * 2 + 2][r * 2 + 2];
     }
     
     /**
@@ -43,15 +43,17 @@ public class HexagonBoard {
         center = tiles[11][11];
         
         // rest of the tiles
-        for (int y = 1; y <= r; y++) { // go in one direction
+        for (int i = 1; i <= r; i++) { // go in one direction
+        	HexagonDirection dir1 = HexagonDirection.getDir(0);
+        	int xPos1 = 11 + (dir1.x * i);
+        	int yPos1 = 11 + (dir1.y * i);
+    		tiles[xPos1][yPos1] = new HexagonTile(xPos1, yPos1);
         		
-        		tiles[11 + 0][11 + -y] = new HexagonTile(11 + 0, 11 + -y);
-        		
-        	for (int i = 0; i < clockwiseOne[y]; i++) { // do the other ones in direction "+1" 
-        		HexagonDirection dir = HexagonDirection.getDir(1);
-        		int xPos = dir.x * i;
-        		int yPos = dir.y * i;
-        		tiles[11 + xPos][11 + yPos] = new HexagonTile(11 + xPos, 11 + yPos);
+        	for (int j = 1; j < clockwiseOne[i]; j++) { // do the other ones in direction "+1" 
+        		HexagonDirection dir2 = HexagonDirection.getDir(1);
+        		int xPos2 = 11 + (dir2.x * j);
+        		int yPos2 = 11 + (dir2.x * j);
+        		tiles[xPos2][yPos2] = new HexagonTile(xPos2, yPos2);
         		
         	}	
         }
