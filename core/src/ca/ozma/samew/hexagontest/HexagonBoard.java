@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
  */
 public class HexagonBoard {
     
-	static int[] clockwiseOne = {0, 10, 10, 9, 9, 8, 7, 6, 5, 3, 1};
+	static int[] clockwiseOne = {0, 10, 9, 9, 8, 8, 7, 6, 5, 3, 1};
     
 
     HexagonTile center;
@@ -26,9 +26,9 @@ public class HexagonBoard {
      */
     public HexagonBoard(int r) {
         this.r = r;
-        arrayCenterX = r + 3;
-        arrayCenterY = r + 3;
-        tiles = new HexagonTile[r * 2 + 6][r * 2 + 6];
+        arrayCenterX = r + 4;
+        arrayCenterY = r + 4;
+        tiles = new HexagonTile[r * 2 + 8][r * 2 + 8];
     }
     
     /**
@@ -50,7 +50,7 @@ public class HexagonBoard {
 	        		
 	    		
 	    		
-	        	for (int j = 1; j < clockwiseOne[i]; j++) { // do the other ones in direction "+1" 
+	        	for (int j = 1; j <= clockwiseOne[i]; j++) { // do the other ones in direction "+1" 
 	        		HexagonDirection dir2 = HexagonDirection.getDir(dir+1);
 	        		int xPos2 = xPos1 + (dir2.x * j);
 	        		int yPos2 = yPos1 + (dir2.y * j);
